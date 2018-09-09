@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client"
+  },
+  "author": "Aleksandra Szpila",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^4.0.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.13"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
