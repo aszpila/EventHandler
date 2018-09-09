@@ -25,7 +25,7 @@ async function callApi(endpoint, settings) {
       : Promise.reject(response.data);
   } catch (error) {
     if (error.response) {
-      window.location.reload();
+      console.log(error.response);
     }
     return Promise.reject(error.response);
   }

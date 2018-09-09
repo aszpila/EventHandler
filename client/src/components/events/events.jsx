@@ -16,12 +16,12 @@ class Events extends Component {
     render() {
         return (
         <div>
-            {
-             this.props.events.map(event =>
-              (            
-                <h2>{`Users ${event.firstName}`}</h2>
-              ))
-              }
+        {
+            this.props.events.map(event =>
+            (            
+                <h2>{`Users ${this.props.event}`}</h2>
+            ))
+        }
         </div>
         );
     }
