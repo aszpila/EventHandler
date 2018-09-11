@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore, applyMiddleware, compose } from 'redux';
 // import registerServiceWorker from './registerServiceWorker';
 import api from './redux/middleware/api';

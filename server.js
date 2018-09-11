@@ -4,7 +4,7 @@ const Event = require('./api/models/event');
 const bodyParser = require('body-parser');
 
 const app = express();
-mongoose.connect('mongodb://user1:<mongodb>@aszpila-787ni.mongodb.net/test?retryWrites=true', {useMongoClient: true});
+mongoose.connect('mongodb://mo1207_database:qtkEPvHqcRf29CqAgSYu@mongo16.mydevil.net:27017/mo1207_database', {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -14,6 +14,7 @@ app.post('/api/event', (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        email: req.body.email,
         eventDate: req.body.eventDate
     });
     event
@@ -22,7 +23,7 @@ app.post('/api/event', (req, res, next) => {
             console.log(result);
         })
         .catch(err => console.log(err));
-    res.status(201).json({
+    res.status(200).json({
         message: 'success',
         addedEvent: event
     });

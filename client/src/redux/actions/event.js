@@ -4,6 +4,10 @@ export const FETCH_EVENT_REQUEST = 'FETCH_EVENT_REQUEST';
 export const FETCH_EVENT_SUCCESS = 'FETCH_EVENT_SUCCESS';
 export const FETCH_EVENT_FAILURE = 'FETCH_EVENT_FAILURE';
 
+export const ADD_EVENT_REQUEST = 'ADD_EVENT_REQUEST';
+export const ADD_EVENT_SUCCESS = 'ADD_EVENT_SUCCESS';
+export const ADD_EVENT_FAILURE = 'ADD_EVENT_FAILURE';
+
 export function fetchEvent() {
   return {
     [CALL_API]: {
@@ -13,6 +17,21 @@ export function fetchEvent() {
         FETCH_EVENT_REQUEST,
         FETCH_EVENT_SUCCESS,
         FETCH_EVENT_FAILURE,
+      ],
+    },
+  };
+}
+
+export function addEvent(firstName, lastName, eventDate) {
+  return {
+    [CALL_API]: {
+      endpoint: `api/event`,
+      method: 'POST',
+      data: { firstName, lastName, eventDate },
+      types: [
+        ADD_EVENT_REQUEST,
+        ADD_EVENT_SUCCESS,
+        ADD_EVENT_FAILURE,
       ],
     },
   };
