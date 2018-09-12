@@ -29,7 +29,7 @@ app.post('/api/event', (req, res, next) => {
     });
 });
 
-app.get('/api/event', (req, res, next) => {
+/*app.get('/api/event', (req, res, next) => {
     const events = [
         {   
             firstName: 'name',
@@ -37,6 +37,6 @@ app.get('/api/event', (req, res, next) => {
             eventDate: 'date'
         }];
         res.json(events);
-});
+});*/
 
 app.listen(5000);

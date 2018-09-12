@@ -28,23 +28,18 @@ class DataForm extends Component {
     this.state = {
       firstName: '',
       lastName: '',
+      email: '',
       eventDate: '',
-    };
-    this.handleChange = this.handleChange.bind(this);    
+    };  
     this.handleOnClick = this.handleOnClick.bind(this);
   }
-
-  handleChange(event) {
-    this.setState({firstName: event.target.value});
-  }
-
+  
   handleOnClick() {
-    this.props.addEvent(this.state.firstName, 'Kowalski', '2018-09-11');
+    this.props.addEvent(this.state.firstName, this.state.lastName, this.state.email, this.state.eventDate);
     this.props.togglePopup();
   }
 
   render() {
-    console.log(this.props.event);
     return (
       <div>
         { this.props.isPopupOpen && 
@@ -63,7 +58,8 @@ class DataForm extends Component {
                     <Label for="exampleEmail">First name</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input valid value={this.state.value} onChange={this.handleChange}/>
+                      <Input valid value={this.state.value} placeholder="first name"
+                        onChange={(event) => this.setState({firstName: event.target.value})}/>
                       {/* <FormFeedback valid tooltip>Sweet! that name is available</FormFeedback>*/}
                       <FormText>Please enter your first name</FormText>
                     </Col>
@@ -73,7 +69,8 @@ class DataForm extends Component {
                       <Label htmlFor="text-input">Last name</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="email" id="text-input" name="text-input" placeholder="last name" />
+                      <Input type="email" id="text-input" name="text-input" placeholder="last name" 
+                        valid onChange={(event) => this.setState({lastName: event.target.value})}/>
                       <FormText className="help-block">Please enter your last name</FormText>
                     </Col>
                   </FormGroup>
@@ -82,16 +79,18 @@ class DataForm extends Component {
                       <Label htmlFor="text-input">Email</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="email" id="text-input" name="text-input" placeholder="last name" />
+                      <Input type="email" id="email" name="email" placeholder="email" 
+                        onChange={(event) => this.setState({email: event.target.value})}/>
                       <FormText className="help-block">Please enter your email address</FormText>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
                     <Col md="3">
-                      <Label htmlFor="date-input">Date Input</Label>
+                      <Label htmlFor="date-input">Event date</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="date" id="date-input" name="date-input" placeholder="date" />
+                      <Input type="date" id="date-input" name="date-input" placeholder="event date" 
+                        onChange={(event) => this.setState({eventDate: event.target.value})}/>
                       <FormText className="help-block">Please select date</FormText>
                     </Col>
                   </FormGroup>
@@ -127,7 +126,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addEvent: (firstName, lastName, eventDate) => dispatch(addEvent(firstName, lastName, eventDate)),
+  addEvent: (firstName, lastName, email, eventDate) => dispatch(addEvent(firstName, lastName, email, eventDate)),
   togglePopup: () => dispatch(togglePopup()),
 });
 

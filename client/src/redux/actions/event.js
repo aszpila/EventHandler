@@ -22,12 +22,12 @@ export function fetchEvent() {
   };
 }
 
-export function addEvent(firstName, lastName, eventDate) {
+export function addEvent(firstName, lastName, email, eventDate) {
   return {
     [CALL_API]: {
       endpoint: `api/event`,
       method: 'POST',
-      data: { firstName, lastName, eventDate },
+      data: { firstName, lastName, email, eventDate },
       types: [
         ADD_EVENT_REQUEST,
         ADD_EVENT_SUCCESS,

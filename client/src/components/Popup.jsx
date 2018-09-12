@@ -23,7 +23,7 @@ class Popup extends React.Component {
                         <p>First name: {data.firstName}</p>
                         <p>Last name: {data.lastName}</p>
                         <p>Email: {data.email}</p>
-                        <p>Event date: {data.eventDate}</p>
+                        <p>Event date: {new Date(data.eventDate).toLocaleString()}</p>
                     </ModalBody>
                     </Loader>
 
