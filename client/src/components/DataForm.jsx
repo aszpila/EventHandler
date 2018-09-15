@@ -9,17 +9,17 @@ import {
   CardHeader,
   Col,
   Form,
-  FormFeedback,
   FormGroup,
   FormText,
-  Input,
   Label,
   Row,
 } from 'reactstrap';
+import  { AvForm, AvField }  from 'availity-reactstrap-validation';
+
 
 import { addEvent } from '../redux/actions/event';
 import { togglePopup } from '../redux/actions/ui';
-import Popup from '../components/Popup';
+import Popup from './Popup';
 
 class DataForm extends Component {
   constructor() {
@@ -40,6 +40,12 @@ class DataForm extends Component {
   }
 
   render() {
+    const { firstName, lastName, email, eventDate } = this.state;
+    const isEnabled =
+      email.length > 0 &&
+      eventDate.length > 0 && 
+      firstName.length > 0 && 
+      lastName.length > 0;
     return (
       <div>
         { this.props.isPopupOpen && 
@@ -58,9 +64,10 @@ class DataForm extends Component {
                     <Label for="exampleEmail">First name</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input valid value={this.state.value} placeholder="first name"
+                    <AvForm>
+                      <AvField name="pattern" type="text" pattern="/^[a-z ,.'-]+$/i" placeholder="first name"
                         onChange={(event) => this.setState({firstName: event.target.value})}/>
-                      {/* <FormFeedback valid tooltip>Sweet! that name is available</FormFeedback>*/}
+                      </AvForm>
                       <FormText>Please enter your first name</FormText>
                     </Col>
                   </FormGroup>
@@ -69,8 +76,10 @@ class DataForm extends Component {
                       <Label htmlFor="text-input">Last name</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="email" id="text-input" name="text-input" placeholder="last name" 
-                        valid onChange={(event) => this.setState({lastName: event.target.value})}/>
+                    <AvForm>
+                      <AvField name="pattern" type="text" pattern="/^[a-z ,.'-]+$/i" placeholder="last name" 
+                        onChange={(event) => this.setState({lastName: event.target.value})}/>
+                      </AvForm>
                       <FormText className="help-block">Please enter your last name</FormText>
                     </Col>
                   </FormGroup>
@@ -79,8 +88,10 @@ class DataForm extends Component {
                       <Label htmlFor="text-input">Email</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="email" id="email" name="email" placeholder="email" 
+                    <AvForm>
+                      <AvField name="email" required type="email" placeholder="email"
                         onChange={(event) => this.setState({email: event.target.value})}/>
+                    </AvForm>
                       <FormText className="help-block">Please enter your email address</FormText>
                     </Col>
                   </FormGroup>
@@ -89,15 +100,17 @@ class DataForm extends Component {
                       <Label htmlFor="date-input">Event date</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="date" id="date-input" name="date-input" placeholder="event date" 
+                    <AvForm>
+                      <AvField type="date" required id="date-input" name="Date" placeholder="event date" 
                         onChange={(event) => this.setState({eventDate: event.target.value})}/>
+                    </AvForm>
                       <FormText className="help-block">Please select date</FormText>
                     </Col>
                   </FormGroup>
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button className="send-button" color="primary" onClick={this.handleOnClick}>Send data</Button>
+                <Button disabled={!isEnabled} className="send-button" color="primary" onClick={this.handleOnClick}>Send data</Button>
               </CardFooter>
             </Card>
           </Col>
