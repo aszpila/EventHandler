@@ -24,7 +24,7 @@ app.post('/api/event', (req, res, next) => {
         })
         .catch(err => console.log(err));
     res.status(200).json({
-        message: 'success',
+        success: true,
         addedEvent: event
     });
 });

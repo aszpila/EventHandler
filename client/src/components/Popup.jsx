@@ -11,26 +11,35 @@ class Popup extends Component {
 
     render() {
         const loader = <div className="loader" />;
-        const { data, title, close } = this.props;
+        const { data, close, isFetching, success } = this.props;
+        console.log(success);
         return (
             <div>
                 <Modal isOpen={this.state.open} toggle={close}>
-                    <ModalHeader toggle={close}>{title}</ModalHeader>
+                    <ModalHeader toggle={close}>Event details</ModalHeader>
                     <Loader 
-                        show={this.props.isFetching} 
+                        show={isFetching} 
                         message={loader} 
                         backgroundStyle={{ backgroundColor: 'white' }} 
                         priority={1} 
                         hideContentOnLoad>
-                    <ModalBody>
-                        <p>First name: {data.firstName}</p>
-                        <p>Last name: {data.lastName}</p>
-                        <p>Email: {data.email}</p>
-                        <p>Event date: {new Date(data.eventDate).toLocaleString()}</p>
-                    </ModalBody>
+                        { success &&
+                            <ModalBody>
+                                <p>First name: {data.firstName}</p>
+                                <p>Last name: {data.lastName}</p>
+                                <p>Email: {data.email}</p>
+                                <p>Event date: {new Date(data.eventDate).toLocaleString()}</p>
+                            </ModalBody>
+                        }
+                        { !success &&
+                            <ModalBody>
+                                <p>Some error occured and no event data was added.</p>
+                                <p>Please try again.</p>
+                            </ModalBody>
+                        }
                     </Loader>
                     <ModalFooter>
-                        <Button className="ok-button" color="success" onClick={close}>OK</Button>
+                        <Button className="ok-button" color="info" onClick={close}>OK</Button>
                     </ModalFooter>
                 </Modal>
             </div>
@@ -39,9 +48,9 @@ class Popup extends Component {
 }
 
 Popup.propTypes = {
-    title: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
     close: PropTypes.func.isRequired,
+    success: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired,
 };
 

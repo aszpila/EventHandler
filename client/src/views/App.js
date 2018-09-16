@@ -60,12 +60,13 @@ export class App extends Component {
 
   render() {
     const enabled = this.isEnabled();
+    const { event, togglePopup, success, isFetching, isPopupOpen } = this.props;
     return (
       <div className="app">
         <div className="app-body">
           {
-            this.props.isPopupOpen &&
-            <Popup title="Added data" data={this.props.event} close={this.props.togglePopup} isFetching={this.props.isFetching} />
+            isPopupOpen &&
+            <Popup data={event} close={togglePopup} isFetching={isFetching} success={success} />
           }
           <Row className="row">
             <Col md="6">
@@ -111,7 +112,7 @@ export class App extends Component {
                         <FormText>Please select event date</FormText>
                       </Col>
                       <DatePicker
-                        id="date"
+                        id="eventDate"
                         inline
                         selected={this.state.eventDate}
                         filterDate={validation.isFutureDate}
@@ -123,9 +124,9 @@ export class App extends Component {
                 </CardBody>
                 <CardFooter>
                   <Button id="addEvent" disabled={!enabled} className="send-button" color="primary" onClick={this.handleSend}>
-                    Send data
+                    Add event
                   </Button>
-                  <Button className="send-button" color="danger" onClick={this.handleReset}>
+                  <Button id="resetForm" className="send-button" color="danger" onClick={this.handleReset}>
                     Reset form
                 </Button>
                 </CardFooter>
@@ -144,6 +145,7 @@ App.propTypes = {
   addEvent: PropTypes.func,
   isPopupOpen: PropTypes.bool,
   togglePopup: PropTypes.func,
+  success: PropTypes.bool,
 };
 
 App.defaultProps = {
@@ -152,10 +154,12 @@ App.defaultProps = {
   addedEvent: null,
   isPopupOpen: false,
   togglePopup: null,
+  success: false,
 };
 
 const mapStateToProps = state => ({
   event: state.event.addedEvent,
+  success: state.event.success,
   isFetching: state.event.isFetching,
   isPopupOpen: state.ui.isPopupOpen,
 });
