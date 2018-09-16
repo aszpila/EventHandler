@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore, applyMiddleware, compose } from 'redux';
 import api from './redux/middleware/api';
 import reducers from './redux/reducers';
 import App from './views/App'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const env = process.env.NODE_ENV || 'development';
 

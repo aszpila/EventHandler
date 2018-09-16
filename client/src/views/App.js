@@ -21,9 +21,10 @@ import { addEvent } from '../redux/actions/event';
 import { togglePopup } from '../redux/actions/ui';
 import Popup from '../components/Popup';
 import FormGroupItem from '../components/FormGroup';
-import '../styles/App.css';
 import validation from '../utils/validation';
+
 import 'react-datepicker/dist/react-datepicker.css';
+import '../styles/App.css';
 
 export class App extends Component {
   constructor() {
@@ -70,10 +71,10 @@ export class App extends Component {
           }
           <Row className="row">
             <Col md="6">
-              <Alert color="info">Fill the form with data, all fields are required</Alert>
+              <Alert color="info">Fill the form with event details, all fields are required.</Alert>
               <Card>
                 <CardHeader>
-                  <strong>Insert Data </strong>below
+                  <strong>Insert event data </strong>below
               </CardHeader>
                 <CardBody>
                   <AvForm onReset={this.handleReset} encType="multipart/form-data" className="form-horizontal">
@@ -123,10 +124,10 @@ export class App extends Component {
                   </AvForm>
                 </CardBody>
                 <CardFooter>
-                  <Button id="addEvent" disabled={!enabled} className="send-button" color="primary" onClick={this.handleSend}>
+                  <Button id="addEvent" disabled={!enabled} className="form-button" color="primary" onClick={this.handleSend}>
                     Add event
                   </Button>
-                  <Button id="resetForm" className="send-button" color="danger" onClick={this.handleReset}>
+                  <Button id="resetForm" className="form-button" color="danger" onClick={this.handleReset}>
                     Reset form
                 </Button>
                 </CardFooter>

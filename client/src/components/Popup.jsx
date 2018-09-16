@@ -6,13 +6,11 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 class Popup extends Component {
     constructor(props) {
         super(props);
-        this.state = { open: true };
+        this.state = {open: true};
     }
-
     render() {
         const loader = <div className="loader" />;
-        const { data, close, isFetching, success } = this.props;
-        console.log(success);
+        const {data, close, isFetching, success} = this.props;
         return (
             <div>
                 <Modal isOpen={this.state.open} toggle={close}>
@@ -20,18 +18,20 @@ class Popup extends Component {
                     <Loader 
                         show={isFetching} 
                         message={loader} 
-                        backgroundStyle={{ backgroundColor: 'white' }} 
+                        backgroundStyle={{backgroundColor: 'white'}} 
                         priority={1} 
                         hideContentOnLoad>
-                        { success &&
+                        { 
+                            success &&
                             <ModalBody>
                                 <p>First name: {data.firstName}</p>
                                 <p>Last name: {data.lastName}</p>
-                                <p>Email: {data.email}</p>
-                                <p>Event date: {new Date(data.eventDate).toLocaleString()}</p>
+                                <p>Email address: {data.email}</p>
+                                <p>Event date: {new Date(data.eventDate).toLocaleDateString()}</p>
                             </ModalBody>
                         }
-                        { !success &&
+                        { 
+                            !success &&
                             <ModalBody>
                                 <p>Some error occured and no event data was added.</p>
                                 <p>Please try again.</p>

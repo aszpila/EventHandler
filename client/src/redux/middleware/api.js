@@ -12,9 +12,6 @@ async function callApi(endpoint, settings) {
 
     config.headers = {
       ...config.headers,
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Methods': '*',
-      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     };
 
@@ -23,6 +20,7 @@ async function callApi(endpoint, settings) {
     return response.statusText === 'OK' || response.status === 204
       ? Promise.resolve(response.data)
       : Promise.reject(response.data);
+      
   } catch (error) {
     if (error.response) {
       console.log(error.response);

@@ -1,13 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Event = require('./models/event');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const Event = require('./models/event');
 
 const app = express();
 mongoose.connect('mongodb://mo1207_database:qtkEPvHqcRf29CqAgSYu@mongo16.mydevil.net:27017/mo1207_database', {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/api/event', (req, res, next) => {
    const event = new Event({

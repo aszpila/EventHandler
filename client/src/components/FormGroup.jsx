@@ -19,7 +19,7 @@ const FormGroupItem = props => (
       </Col>
     </AvGroup>
   </div>
-)
+);
 
 FormGroupItem.propTypes = {
   label: PropTypes.string.isRequired,

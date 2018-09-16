@@ -1,6 +1,4 @@
-import {
-    TOGGLE_POPUP,
-} from '../actions/ui';
+import { TOGGLE_POPUP } from '../actions/ui';
 
 const initialState = {
     isPopupOpen: false,
