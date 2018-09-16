@@ -8,6 +8,7 @@
     "bootstrap": "^4.1.3",
     "node-sass": "^4.9.3",
     "react": "^16.5.1",
+    "react-datepicker": "^1.6.0",
     "react-dom": "^16.5.1",
     "react-loader-advanced": "^1.7.1",
     "react-redux": "^5.0.7",

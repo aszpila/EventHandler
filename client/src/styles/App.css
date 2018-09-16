@@ -3,18 +3,47 @@
 }
 
 .app-body {
-  margin-top: 45px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.form-text {
+  margin-top: 0;
+  margin-bottom: 0.1rem;
+}
+
+.event-label {
+  margin-bottom: 0.1rem;
 }
 
 .send-button {
   margin: 5px; 
+  width: 30%;
+}
+
+.ok-button {
+  text-align: center;
+  width: 50%;
 }
 
 .row {
   justify-content: center;
 }
 
-.popup-loader {
+.modal-body {
+  text-align: center;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+.loader {
   border: 3px solid gray;
   border-top: 3px solid lightgray;
   border-radius: 50%;
