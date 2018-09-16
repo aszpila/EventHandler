@@ -10,6 +10,10 @@ const validation = {
         const validatedName = reg.test(name);
         if (!validatedName) { return ''; }
         return name;
+    },
+    isFutureDate(date) {
+        const today = new Date();
+        return new Date(date) >= today;
     }
 }
 

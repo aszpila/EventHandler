@@ -18,7 +18,7 @@
 }
 
 .event-label {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.05rem;
 }
 
 .send-button {
@@ -31,15 +31,11 @@
   width: 50%;
 }
 
-.row {
-  justify-content: center;
-}
-
 .modal-body {
   text-align: center;
 }
 
-.modal-footer {
+.modal-footer, .row {
   justify-content: center;
 }
 

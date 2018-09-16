@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { AvForm } from 'availity-reactstrap-validation';
 import DatePicker from 'react-datepicker';
 import {
+  Alert,
   Button,
   Card,
   CardBody,
@@ -31,12 +32,11 @@ class App extends Component {
       firstName: '',
       lastName: '',
       email: '',
-      eventDate: '',
+      eventDate: null,
     };
     this.handleSend = this.handleSend.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.isEnabled = this.isEnabled.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSend() {
@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   handleReset() {
-    this.setState({ firstName: '', lastName: '', email: '', eventDate: '' })
+    this.setState({ firstName: '', lastName: '', email: '', eventDate: null })
   }
 
   isEnabled() {
@@ -53,17 +53,12 @@ class App extends Component {
     if (validation.validateEmail(email).length > 0 &&
       validation.validateName(firstName).length > 0 &&
       validation.validateName(lastName).length > 0 &&
-      eventDate !== '') {
+      eventDate !== null) {
       return true;
     }
   }
 
-  handleChange (date) {
-    this.setState({ eventDate: date })
-    console.log('date', this.state.eventDate);
-  }
-
-  render() {
+  render() {    
     const enabled = this.isEnabled();
     return (
       <div className="app">
@@ -74,6 +69,7 @@ class App extends Component {
           }
           <Row className="row">
             <Col md="6">
+            <Alert color="info">Fill the form with data, all fields are required</Alert>
               <Card>
                 <CardHeader>
                   <strong>Insert Data </strong>below
@@ -114,6 +110,7 @@ class App extends Component {
                       <DatePicker
                         inline
                         selected={this.state.eventDate}
+                        filterDate={validation.isFutureDate}
                         onChange={(event) => this.setState({ eventDate: event })}
                         onSelect={(event) => this.setState({ eventDate: event })}
                       />
