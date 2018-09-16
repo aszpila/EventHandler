@@ -7,6 +7,10 @@
   margin-bottom: 30px;
 }
 
+.row {
+  justify-content: center;
+}
+
 .form-group {
   margin-bottom: 0.7rem;
   margin-top: 0.3rem;
@@ -35,8 +39,8 @@
   text-align: center;
 }
 
-.modal-footer, .row {
-  justify-content: center;
+.modal-footer {
+  justify-content: center !important;
 }
 
 .loader {
