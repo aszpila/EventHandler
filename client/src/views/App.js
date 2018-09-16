@@ -25,7 +25,7 @@ import '../styles/App.css';
 import validation from '../utils/validation';
 import 'react-datepicker/dist/react-datepicker.css';
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -58,7 +58,7 @@ class App extends Component {
     }
   }
 
-  render() {    
+  render() {
     const enabled = this.isEnabled();
     return (
       <div className="app">
@@ -69,7 +69,7 @@ class App extends Component {
           }
           <Row className="row">
             <Col md="6">
-            <Alert color="info">Fill the form with data, all fields are required</Alert>
+              <Alert color="info">Fill the form with data, all fields are required</Alert>
               <Card>
                 <CardHeader>
                   <strong>Insert Data </strong>below
@@ -77,6 +77,7 @@ class App extends Component {
                 <CardBody>
                   <AvForm onReset={this.handleReset} encType="multipart/form-data" className="form-horizontal">
                     <FormGroupItem
+                      id="firstName"
                       label="First name"
                       name="firstName"
                       type="text"
@@ -86,6 +87,7 @@ class App extends Component {
                       onChange={(event) => this.setState({ firstName: event.target.value })}
                     />
                     <FormGroupItem
+                      id="lastName"
                       label="Last name"
                       name="lastName"
                       type="text"
@@ -95,6 +97,7 @@ class App extends Component {
                       onChange={(event) => this.setState({ lastName: event.target.value })}
                     />
                     <FormGroupItem
+                      id="email"
                       label="Email address"
                       name="email"
                       type="email"
@@ -108,6 +111,7 @@ class App extends Component {
                         <FormText>Please select event date</FormText>
                       </Col>
                       <DatePicker
+                        id="date"
                         inline
                         selected={this.state.eventDate}
                         filterDate={validation.isFutureDate}
@@ -118,9 +122,9 @@ class App extends Component {
                   </AvForm>
                 </CardBody>
                 <CardFooter>
-                  <Button disabled={!enabled} className="send-button" color="primary" onClick={this.handleSend}>
+                  <Button id="addEvent" disabled={!enabled} className="send-button" color="primary" onClick={this.handleSend}>
                     Send data
-                </Button>
+                  </Button>
                   <Button className="send-button" color="danger" onClick={this.handleReset}>
                     Reset form
                 </Button>
@@ -135,15 +139,19 @@ class App extends Component {
 }
 
 App.propTypes = {
-  event: PropTypes.object.isRequired,
+  event: PropTypes.object,
   isFetching: PropTypes.bool,
-  addEvent: PropTypes.func.isRequired,
-  isPopupOpen: PropTypes.bool.isRequired,
-  togglePopup: PropTypes.func.isRequired,
+  addEvent: PropTypes.func,
+  isPopupOpen: PropTypes.bool,
+  togglePopup: PropTypes.func,
 };
 
 App.defaultProps = {
+  event: {},
   isFetching: false,
+  addedEvent: null,
+  isPopupOpen: false,
+  togglePopup: null,
 };
 
 const mapStateToProps = state => ({
