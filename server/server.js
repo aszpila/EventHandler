@@ -5,14 +5,14 @@ const cors = require('cors');
 const Event = require('./models/event');
 
 const app = express();
-mongoose.connect('mongodb://mo1207_database:qtkEPvHqcRf29CqAgSYu@mongo16.mydevil.net:27017/mo1207_database', {useMongoClient: true});
+mongoose.connect('mongodb://mo1207_database:qtkEPvHqcRf29CqAgSYu@mongo16.mydevil.net:27017/mo1207_database', { useMongoClient: true });
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/api/event', (req, res, next) => {
-   const event = new Event({
+    const event = new Event({
         _id: new mongoose.Types.ObjectId(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -23,12 +23,20 @@ app.post('/api/event', (req, res, next) => {
         .save()
         .then(result => {
             console.log(result);
+
+            res.status(200).json({
+                success: true,
+                addedEvent: event
+            });
+
         })
-        .catch(err => console.log(err));
-    res.status(200).json({
-        success: true,
-        addedEvent: event
-    });
+        .catch(
+            (error) =>
+                res.status(400).json({
+                    success: false,
+                    error: error
+                })
+        );
 });
 
 app.listen(5000);

@@ -28,6 +28,7 @@ import {
       case ADD_EVENT_FAILURE: {
         return Object.assign({}, state, {
           isFetching: false,
+          addedEvent: {},
           success: false,
         });
       }

@@ -66,8 +66,9 @@ describe('App view - submit with parameter', () => {
       wrapper.find('#email').simulate('change', { target: { name: 'email', value: 'ola@gmail.com' }}); 
       wrapper.find('#firstName').simulate('change', { target: { name: 'firstName', value: 'Jan' }});
       wrapper.find('#lastName').simulate('change', { target: { name: 'lastName', value: 'Kowalski' }}); 
+      wrapper.find('#eventDate').simulate('change', { eventDate: '2018-09-18T22:00:00.000Z' } );
       wrapper.find('#addEvent').simulate('click', { preventDefault() {} });
-      expect(store.mock.calls[2]).toEqual([ 'Jan', 'Kowalski', 'ola@gmail.com', null ]);
+      expect(store.mock.calls[2]).toEqual([ 'Jan', 'Kowalski', 'ola@gmail.com', { eventDate: '2018-09-18T22:00:00.000Z' } ]);
     });
   });
 });
