@@ -30,13 +30,12 @@ app.post('/api/event', (req, res, next) => {
             });
 
         })
-        .catch(
-            (error) =>
-                res.status(400).json({
-                    success: false,
-                    error: error
-                })
-        );
+        .catch(error => {
+            res.status(400).json({
+                success: false,
+                error: error
+            });
+        });
 });
 
 app.listen(5000);
