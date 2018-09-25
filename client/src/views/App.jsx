@@ -102,7 +102,8 @@ export class App extends Component {
                       id="email"
                       label="Email address"
                       name="email"
-                      type="email"
+                      type="text"
+                      pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"
                       placeholder="email address"
                       value={this.state.email}
                       onChange={(event) => this.setState({ email: event.target.value })}
@@ -152,7 +153,7 @@ App.propTypes = {
 App.defaultProps = {
   event: {},
   isFetching: false,
-  addedEvent: null,
+  addEvent: null,
   isPopupOpen: false,
   togglePopup: null,
   success: false,

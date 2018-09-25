@@ -27,7 +27,7 @@ class Popup extends Component {
                                 <p>First name: {data.firstName}</p>
                                 <p>Last name: {data.lastName}</p>
                                 <p>Email address: {data.email}</p>
-                                <p>Event date: {new Date(data.eventDate).toLocaleDateString()}</p>
+                                <p>Event date: {new Date(data.eventDate).toDateString()}</p>
                             </ModalBody>
                         }
                         { 

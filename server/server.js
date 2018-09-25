@@ -5,7 +5,12 @@ const cors = require('cors');
 const Event = require('./models/event');
 
 const app = express();
-mongoose.connect('mongodb://mo1207_database:qtkEPvHqcRf29CqAgSYu@mongo16.mydevil.net:27017/mo1207_database', { useMongoClient: true });
+
+if (process.env.NODE_ENV == 'test') {
+    mongoose.connect('mongodb://mo1207_db_test:DznpBGL5MnTImCeHb3RE@mongo16.mydevil.net:27017/mo1207_db_test', { useMongoClient: true });
+} else {
+    mongoose.connect('mongodb://mo1207_database:qtkEPvHqcRf29CqAgSYu@mongo16.mydevil.net:27017/mo1207_database', { useMongoClient: true }); 
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -38,4 +43,4 @@ app.post('/api/event', (req, res, next) => {
         });
 });
 
-app.listen(5000);
+module.exports = app.listen(5000);

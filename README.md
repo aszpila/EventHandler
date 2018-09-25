@@ -34,8 +34,14 @@ That command runs the server side on the port 5000.<br>
 
 ## Running tests
 
-To run tests go to the client folder (**cd client**) and run:
+To run frontend tests go to the client folder (**cd client**) and run:
 
 ### `npm test -- --coverage`
 
 The results will be presented in the console.<br>
+
+To run backend tests go to the server folder (**cd server**) and run:
+
+### `npm run test`
+
+The results will be also presented in the console.<br>
